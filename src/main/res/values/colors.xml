@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/values/colors.xml — Bảng màu PurePaw -->
+<resources>
+    <!-- Màu chủ đạo -->
+    <color name="primary_orange">#C8772A</color>
+    <color name="orange_light">#F5E0C8</color>
+    <color name="orange_dark">#A05A1A</color>
+    <color name="bg_color">#F6E0DC</color>
+
+    <!-- Màu nền -->
+    <color name="background_grey">#F4F4F6</color>
+    <color name="white">#FFFFFF</color>
+    <color name="divider">#EBEBEB</color>
+
+    <!-- Màu văn bản -->
+    <color name="text_primary">#1A1A2E</color>
+    <color name="text_secondary">#6B7280</color>
+    <color name="text_hint">#9CA3AF</color>
+
+    <!-- Màu trạng thái -->
+    <color name="green_positive">#22A55B</color>
+    <color name="green_bg">#E6F7EE</color>
+    <color name="red_negative">#EF4444</color>
+    <color name="red_bg">#FEE2E2</color>
+    <color name="yellow_warning">#D97706</color>
+    <color name="yellow_bg">#FEF3C7</color>
+    <color name="blue_info">#3B82F6</color>
+    <color name="blue_bg">#EFF6FF</color>
+
+    <color name="orange_primary">#E8871E</color>
+    <color name="cream_bg">#FBF3E9</color>
+    <color name="text_dark">#2B2320</color>
+    <color name="text_gray">#8A7F78</color>
+    <color name="text_light_gray">#B7ADA6</color>
+    <color name="badge_blue_bg">#D9E8FB</color>
+    <color name="badge_blue_text">#3D6FB4</color>
+    <color name="badge_yellow_bg">#FBF0C9</color>
+    <color name="badge_yellow_text">#B5900F</color>
+    <color name="badge_green_bg">#DCF3E3</color>
+    <color name="badge_green_text">#2F9E5C</color>
+    <color name="note_orange">#E8871E</color>
+    <color name="notification_red">#E4453A</color>
+    <color name="date_dot">#E8871E</color>
+</resources>

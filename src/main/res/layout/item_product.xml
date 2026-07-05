@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- item_product.xml — một dòng sản phẩm trong RecyclerView -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card_rounded"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:elevation="10dp"
+    android:padding="12dp">
+
+    <!-- Ảnh sản phẩm -->
+    <ImageView
+        android:id="@+id/productImage"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="10dp"
+        android:padding="4dp"
+        android:scaleType="centerCrop"
+        android:src="@android:drawable/ic_menu_gallery" />
+
+    <!-- Thông tin sản phẩm -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/productName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Royal Canin Adult Medium"
+            android:textColor="@color/text_primary"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/productCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="RC-ADM-200"
+            android:textColor="@color/text_hint"
+            android:textSize="11sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/productPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="410.000đ"
+                android:textColor="@color/primary_orange"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/stockStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/bg_status_green"
+                android:paddingStart="8dp"
+                android:paddingTop="3dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="3dp"
+                android:text="Còn hàng"
+                android:textColor="@color/green_positive"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Tồn kho badge -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingRight="35dp"
+        android:orientation="vertical">
+
+        <!-- Action icons -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/btnEditProduct"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="10dp"
+                android:padding="5dp"
+                android:background="@drawable/bg_status_yellow_round"
+                android:src="@android:drawable/ic_menu_edit"
+                app:tint="@color/primary_orange" />
+
+            <ImageView
+                android:id="@+id/btnDeleteProduct"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                android:background="@drawable/bg_status_red_round"
+                android:src="@android:drawable/ic_menu_delete"
+               app:tint="@color/red_negative" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

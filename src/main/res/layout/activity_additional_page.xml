@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+    <!-- Top App Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#FFFFFF"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <ImageView
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:background="@drawable/bg_circle_orange"
+            android:contentDescription="Logo"
+            android:src="@mipmap/logo" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Thêm"
+            android:textColor="#1A1A1A"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="Notifications"
+            android:src="@mipmap/ic_notification" />
+    </LinearLayout>
+
+    <!-- User Info Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:background="#FFFFFF"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="25dp"
+        android:paddingBottom="0dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_avatar_orange"
+            android:contentDescription="Avatar"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/logo" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Admin PurePaw"
+                android:textColor="#1A1A1A"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="admin@purepaw.vn"
+                android:textColor="#888888"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Menu Items -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:elevation="20dp"
+            android:padding="8dp">
+
+            <!-- Danh mục -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FFFFFF"
+                    android:orientation="vertical">
+
+                    <!-- Danh mục item -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="66dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:background="#F8E9E9"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_circle_orange"
+                            android:contentDescription="Danh mục"
+                            android:padding="8dp"
+                            android:src="@android:drawable/ic_menu_agenda" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="14dp"
+                            android:layout_weight="1"
+                            android:text="Danh mục"
+                            android:textColor="#1A1A1A"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:contentDescription="Arrow"
+                            android:src="@mipmap/ic_next" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp" />
+
+                    <!-- Khuyến mãi item -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="66dp"
+                        android:background="#F8E9E9"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_circle_orange"
+                            android:contentDescription="Khuyến mãi"
+                            android:padding="8dp"
+                            android:src="@android:drawable/ic_menu_sort_by_size" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="14dp"
+                            android:layout_weight="1"
+                            android:text="Khuyến mãi"
+                            android:textColor="#1A1A1A"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:contentDescription="Arrow"
+                            android:src="@mipmap/ic_next" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp" />
+
+                    <!-- Blog item -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="66dp"
+                        android:background="#F8E9E9"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_circle_orange"
+                            android:contentDescription="Blog"
+                            android:padding="8dp"
+                            android:src="@android:drawable/ic_menu_edit" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="14dp"
+                            android:layout_weight="1"
+                            android:text="Blog"
+                            android:textColor="#1A1A1A"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:contentDescription="Arrow"
+                            android:src="@mipmap/ic_next" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp" />
+
+                    <!-- Người dùng item -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="66dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:background="#F8E9E9"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_circle_orange"
+                            android:contentDescription="Người dùng"
+                            android:padding="8dp"
+
+                            android:src="@android:drawable/ic_menu_myplaces" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="14dp"
+                            android:layout_weight="1"
+                            android:text="Người dùng"
+                            android:textColor="#1A1A1A"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:contentDescription="Arrow"
+                            android:src="@mipmap/ic_next" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Navigation -->
+    <include layout="@layout/layout_bottom_nav_add" />
+</LinearLayout>

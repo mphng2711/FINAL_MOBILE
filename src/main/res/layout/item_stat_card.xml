@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- item_stat_card.xml — card thống kê nhỏ dùng trong overview -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:background="@drawable/bg_card_rounded"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/statValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1,284"
+        android:textColor="@color/text_primary"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/statLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Đơn hàng"
+        android:textColor="@color/text_secondary"
+        android:textSize="11sp" />
+
+    <TextView
+        android:id="@+id/statChange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/bg_tag_green"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:text="+1.23%"
+        android:textColor="@color/green_positive"
+        android:textSize="10sp" />
+
+</LinearLayout>

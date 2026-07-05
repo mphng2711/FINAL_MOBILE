@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- item_category.xml — một dòng danh mục -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card_rounded"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="14dp">
+
+    <!-- Icon danh mục -->
+    <ImageView
+        android:id="@+id/categoryIcon"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/bg_status_yellow"
+        android:padding="8dp"
+        android:src="@android:drawable/ic_menu_myplaces"
+        app:tint="#000000" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="10dp">
+        <!-- Tên danh mục -->
+        <TextView
+            android:id="@+id/categoryName"
+            android:layout_width="128dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_weight="1"
+            android:text="Thức ăn"
+            android:textColor="@color/text_primary"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/categoryProductDes"
+            android:layout_marginStart="15dp"
+            android:text="Thức ăn cho chó, mèo"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/text_secondary"
+            android:textSize="11sp"/>
+        <!-- Số sản phẩm -->
+        <TextView
+            android:id="@+id/categoryProductCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:padding="3dp"
+            android:text="51 sản phẩm"
+            android:background="@drawable/bg_status_yellow"
+            android:textColor="@color/orange_dark"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <!-- Toggle hiển thị -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="55dp">
+
+        <Switch
+            android:id="@+id/categoryToggle"
+            android:layout_width="58dp"
+            android:layout_height="48dp"
+            android:checked="true"
+            android:thumbTint="@color/primary_orange"
+            android:trackTint="#D59041"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="3dp">
+            <ImageView
+                android:id="@+id/btnEditProduct"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="6dp"
+                android:padding="5dp"
+                android:background="@drawable/bg_status_yellow_round"
+                android:src="@android:drawable/ic_menu_edit"
+                app:tint="@color/primary_orange" />
+
+            <ImageView
+                android:id="@+id/btnDeleteProduct"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                android:background="@drawable/bg_status_red_round"
+                android:src="@android:drawable/ic_menu_delete"
+
+                app:tint="@color/red_negative" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
