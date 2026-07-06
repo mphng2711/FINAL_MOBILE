@@ -55,7 +55,6 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
                 new SpacingItemDecoration((int) (12 * getResources().getDisplayMetrics().density), true));
 
         getBinding().btnShopNow.setOnClickListener(v -> goToProducts(null));
-        getBinding().tvSeeAllCategories.setOnClickListener(v -> goToProducts(null));
         getBinding().tvSeeAllProducts.setOnClickListener(v -> goToProducts(null));
 
         getBinding().cardCategoryFood.setOnClickListener(v -> goToProducts("food"));

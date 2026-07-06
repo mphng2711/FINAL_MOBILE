@@ -140,21 +140,11 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="Danh mục"
                 android:textColor="@color/pp_text_primary"
                 android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_see_all_categories"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Xem tất cả"
-                android:textColor="@color/pp_primary"
-                android:textSize="13sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
