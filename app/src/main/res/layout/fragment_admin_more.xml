@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pp_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="96dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Khác"
+            android:textColor="@color/pp_text_primary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/shape_rounded_16"
+            android:backgroundTint="@color/pp_light_beige"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/shape_circle"
+                android:backgroundTint="@color/pp_primary"
+                android:gravity="center"
+                android:text="👤"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_admin_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Admin PurePaw"
+                    android:textColor="@color/pp_text_primary"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_admin_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="admin@purepaw.vn"
+                    android:textColor="@color/pp_text_secondary"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_categories"
+                style="@style/ProfileMenuCard">
+
+                <LinearLayout style="@style/ProfileMenuRow">
+                    <TextView style="@style/ProfileMenuIcon" android:backgroundTint="@color/pp_chip_orange_bg" android:text="🗂️" />
+                    <LinearLayout style="@style/ProfileMenuTextColumn">
+                        <TextView style="@style/ProfileMenuTitle" android:text="Danh mục" />
+                        <TextView style="@style/ProfileMenuSubtitle" android:text="Quản lý danh mục sản phẩm" />
+                    </LinearLayout>
+                    <ImageView style="@style/ProfileMenuChevron" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_promotions"
+                style="@style/ProfileMenuCard">
+
+                <LinearLayout style="@style/ProfileMenuRow">
+                    <TextView style="@style/ProfileMenuIcon" android:backgroundTint="@color/pp_chip_pink_bg" android:text="🏷️" />
+                    <LinearLayout style="@style/ProfileMenuTextColumn">
+                        <TextView style="@style/ProfileMenuTitle" android:text="Khuyến mãi" />
+                        <TextView style="@style/ProfileMenuSubtitle" android:text="Quản lý mã giảm giá" />
+                    </LinearLayout>
+                    <ImageView style="@style/ProfileMenuChevron" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_blogs"
+                style="@style/ProfileMenuCard">
+
+                <LinearLayout style="@style/ProfileMenuRow">
+                    <TextView style="@style/ProfileMenuIcon" android:backgroundTint="@color/pp_chip_teal_bg" android:text="📖" />
+                    <LinearLayout style="@style/ProfileMenuTextColumn">
+                        <TextView style="@style/ProfileMenuTitle" android:text="Blog" />
+                        <TextView style="@style/ProfileMenuSubtitle" android:text="Quản lý bài viết chia sẻ" />
+                    </LinearLayout>
+                    <ImageView style="@style/ProfileMenuChevron" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_bookings"
+                style="@style/ProfileMenuCard">
+
+                <LinearLayout style="@style/ProfileMenuRow">
+                    <TextView style="@style/ProfileMenuIcon" android:backgroundTint="@color/pp_chip_purple_bg" android:text="🗓️" />
+                    <LinearLayout style="@style/ProfileMenuTextColumn">
+                        <TextView style="@style/ProfileMenuTitle" android:text="Lịch hẹn Spa" />
+                        <TextView style="@style/ProfileMenuSubtitle" android:text="Quản lý lịch hẹn của khách" />
+                    </LinearLayout>
+                    <ImageView style="@style/ProfileMenuChevron" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_users"
+                style="@style/ProfileMenuCard">
+
+                <LinearLayout style="@style/ProfileMenuRow">
+                    <TextView style="@style/ProfileMenuIcon" android:backgroundTint="@color/pp_chip_green_bg" android:text="👥" />
+                    <LinearLayout style="@style/ProfileMenuTextColumn">
+                        <TextView style="@style/ProfileMenuTitle" android:text="Người dùng" />
+                        <TextView style="@style/ProfileMenuSubtitle" android:text="Danh sách khách hàng đã đăng ký" />
+                    </LinearLayout>
+                    <ImageView style="@style/ProfileMenuChevron" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_logout"
+                style="@style/ProfileMenuCard">
+
+                <LinearLayout style="@style/ProfileMenuRow">
+                    <TextView style="@style/ProfileMenuIcon" android:backgroundTint="@color/pp_chip_gray_bg" android:text="🚪" />
+                    <LinearLayout style="@style/ProfileMenuTextColumn">
+                        <TextView style="@style/ProfileMenuTitle" android:text="Đăng xuất" android:textColor="@color/pp_error" />
+                        <TextView style="@style/ProfileMenuSubtitle" android:text="Thoát khỏi tài khoản quản trị" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,19 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Purepawapp" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/pp_primary</item>
+        <item name="colorPrimaryDark">@color/pp_primary_dark</item>
+        <item name="colorOnPrimary">@color/pp_on_primary</item>
+        <item name="colorSecondary">@color/pp_secondary</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:colorBackground">@color/pp_background</item>
+        <item name="colorSurface">@color/pp_surface</item>
+        <item name="colorOnBackground">@color/pp_on_background</item>
+        <item name="colorOnSurface">@color/pp_on_background</item>
+        <item name="colorError">@color/pp_error</item>
+        <item name="android:statusBarColor">@color/pp_background</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="Theme.Purepawapp" parent="Base.Theme.Purepawapp" />
+</resources>

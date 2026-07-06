@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/ContentCard">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <TextView
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/shape_rounded_12"
+            android:backgroundTint="@color/pp_light_beige"
+            android:gravity="center"
+            android:text="📖"
+            android:textSize="22sp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:text="Tiêu đề bài viết"
+                android:textColor="@color/pp_text_primary"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_author"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Tác giả · ngày"
+                android:textColor="@color/pp_text_secondary"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_status"
+                style="@style/StatusBadge"
+                android:layout_marginTop="6dp"
+                android:text="Đã đăng"
+                android:textColor="@color/pp_success_dark"
+                android:backgroundTint="@color/pp_chip_green_bg" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btn_delete"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:gravity="center"
+            android:text="🗑️"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

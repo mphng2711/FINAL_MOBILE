@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/account_nav_graph"
+    app:startDestination="@id/profileFragment">
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.purepawapp.ui.profile.ProfileFragment"
+        android:label="Account"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_orderHistoryFragment"
+            app:destination="@id/orderHistoryFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_contactFragment"
+            app:destination="@id/contactFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_policyFragment"
+            app:destination="@id/policyFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.purepawapp.ui.profile.EditProfileFragment"
+        android:label="Edit Profile"
+        tools:layout="@layout/fragment_edit_profile" />
+
+    <fragment
+        android:id="@+id/orderHistoryFragment"
+        android:name="com.example.purepawapp.ui.order.OrderHistoryFragment"
+        android:label="Order History"
+        tools:layout="@layout/fragment_order_history">
+        <action
+            android:id="@+id/action_orderHistoryFragment_to_orderDetailFragment"
+            app:destination="@id/orderDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/orderDetailFragment"
+        android:name="com.example.purepawapp.ui.order.OrderDetailFragment"
+        android:label="Order Detail"
+        tools:layout="@layout/fragment_order_detail">
+        <argument
+            android:name="orderId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/contactFragment"
+        android:name="com.example.purepawapp.ui.profile.ContactFragment"
+        android:label="Contact Us"
+        tools:layout="@layout/fragment_contact" />
+
+    <fragment
+        android:id="@+id/policyFragment"
+        android:name="com.example.purepawapp.ui.profile.PolicyFragment"
+        android:label="Policy &amp; Terms"
+        tools:layout="@layout/fragment_policy" />
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.purepawapp.ui.profile.AboutFragment"
+        android:label="About Us"
+        tools:layout="@layout/fragment_about" />
+
+</navigation>

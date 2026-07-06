@@ -1,0 +1,69 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Public catalog data — anyone can read, only trusted backend/admin writes.
+    match /categories/{categoryId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if false;
+
+      match /reviews/{reviewId} {
+        allow read: if true;
+        allow create: if isSignedIn();
+        allow update, delete: if isOwner(resource.data.userId);
+      }
+    }
+
+    match /spaServices/{serviceId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /blogs/{blogId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /promotions/{code} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Users can only see/edit their own profile.
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+    }
+
+    // Orders and bookings belong to the user who created them.
+    match /orders/{orderId} {
+      allow read, update, delete: if isOwner(resource.data.userId);
+      allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid;
+    }
+
+    match /bookings/{bookingId} {
+      allow read, update, delete: if isOwner(resource.data.userId);
+      allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid;
+    }
+
+    // Shared slot-availability doc: readable by everyone, any signed-in user can
+    // append their own slot (arrayUnion) when creating a booking.
+    match /bookedSlots/{date} {
+      allow read: if true;
+      allow write: if isSignedIn();
+    }
+  }
+}

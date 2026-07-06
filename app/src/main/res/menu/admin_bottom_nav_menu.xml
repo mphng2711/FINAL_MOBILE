@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/adminDashboardFragment"
+        android:icon="@drawable/ic_admin_dashboard"
+        android:title="Tổng quan" />
+    <item
+        android:id="@+id/adminOrdersFragment"
+        android:icon="@drawable/ic_admin_orders"
+        android:title="Đơn hàng" />
+    <item
+        android:id="@+id/adminProductsFragment"
+        android:icon="@drawable/ic_nav_products"
+        android:title="Sản phẩm" />
+    <item
+        android:id="@+id/adminMoreFragment"
+        android:icon="@drawable/ic_admin_more"
+        android:title="Khác" />
+</menu>

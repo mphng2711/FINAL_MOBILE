@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">PURE PAW</string>
+    <string name="tagline">Pet House</string>
+    <string name="default_notification_channel_id" translatable="false">purepaw_updates</string>
+
+    <string name="nav_home">Home</string>
+    <string name="nav_products">Sản phẩm</string>
+    <string name="nav_spa">Spa</string>
+    <string name="nav_cart">Cart</string>
+    <string name="nav_account">Account</string>
+
+    <string name="action_login">Log In</string>
+    <string name="action_signup">Sign Up</string>
+    <string name="action_continue">Continue</string>
+    <string name="action_confirm">Confirm</string>
+    <string name="action_add_to_cart">Add to Cart</string>
+    <string name="action_checkout">Checkout</string>
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+
+    <string name="label_email">Email</string>
+    <string name="label_password">Password</string>
+    <string name="label_full_name">Full Name</string>
+    <string name="label_phone">Phone Number</string>
+    <string name="label_search_hint">Search products…</string>
+
+    <string name="error_generic">Something went wrong. Please try again.</string>
+    <string name="error_network">No internet connection.</string>
+    <string name="empty_generic">Nothing here yet.</string>
+</resources>

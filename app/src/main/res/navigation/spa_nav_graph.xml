@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/spa_nav_graph"
+    app:startDestination="@id/spaServiceSelectFragment">
+
+    <fragment
+        android:id="@+id/spaServiceSelectFragment"
+        android:name="com.example.purepawapp.ui.spa.SpaServiceSelectFragment"
+        android:label="Select Service"
+        tools:layout="@layout/fragment_spa_service_select">
+        <action
+            android:id="@+id/action_spaServiceSelectFragment_to_spaDateTimeFragment"
+            app:destination="@id/spaDateTimeFragment" />
+        <action
+            android:id="@+id/action_spaServiceSelectFragment_to_appointmentsFragment"
+            app:destination="@id/appointmentsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/spaDateTimeFragment"
+        android:name="com.example.purepawapp.ui.spa.SpaDateTimeFragment"
+        android:label="Pick Date &amp; Time"
+        tools:layout="@layout/fragment_spa_datetime">
+        <action
+            android:id="@+id/action_spaDateTimeFragment_to_spaPetInfoFragment"
+            app:destination="@id/spaPetInfoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/spaPetInfoFragment"
+        android:name="com.example.purepawapp.ui.spa.SpaPetInfoFragment"
+        android:label="Pet Information"
+        tools:layout="@layout/fragment_spa_pet_info">
+        <action
+            android:id="@+id/action_spaPetInfoFragment_to_spaConfirmFragment"
+            app:destination="@id/spaConfirmFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/spaConfirmFragment"
+        android:name="com.example.purepawapp.ui.spa.SpaConfirmFragment"
+        android:label="Confirm &amp; Pay"
+        tools:layout="@layout/fragment_spa_confirm">
+        <action
+            android:id="@+id/action_spaConfirmFragment_to_spaBookingSuccessFragment"
+            app:destination="@id/spaBookingSuccessFragment"
+            app:popUpTo="@id/spaServiceSelectFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/spaBookingSuccessFragment"
+        android:name="com.example.purepawapp.ui.spa.SpaBookingSuccessFragment"
+        android:label="Booking Confirmed"
+        tools:layout="@layout/fragment_spa_booking_success" />
+
+    <fragment
+        android:id="@+id/appointmentsFragment"
+        android:name="com.example.purepawapp.ui.spa.AppointmentsFragment"
+        android:label="Appointments"
+        tools:layout="@layout/fragment_appointments">
+        <action
+            android:id="@+id/action_appointmentsFragment_to_appointmentRatingFragment"
+            app:destination="@id/appointmentRatingFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/appointmentRatingFragment"
+        android:name="com.example.purepawapp.ui.spa.AppointmentRatingFragment"
+        android:label="Rate Your Visit"
+        tools:layout="@layout/fragment_appointment_rating">
+        <argument
+            android:name="bookingId"
+            app:argType="string" />
+    </fragment>
+
+</navigation>

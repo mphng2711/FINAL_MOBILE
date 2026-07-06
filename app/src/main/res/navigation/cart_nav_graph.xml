@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cart_nav_graph"
+    app:startDestination="@id/cartFragment">
+
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.purepawapp.ui.cart.CartFragment"
+        android:label="Cart"
+        tools:layout="@layout/fragment_cart">
+        <action
+            android:id="@+id/action_cartFragment_to_checkoutAddressFragment"
+            app:destination="@id/checkoutAddressFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/checkoutAddressFragment"
+        android:name="com.example.purepawapp.ui.checkout.CheckoutAddressFragment"
+        android:label="Shipping Address"
+        tools:layout="@layout/fragment_checkout_address">
+        <action
+            android:id="@+id/action_checkoutAddressFragment_to_checkoutPaymentFragment"
+            app:destination="@id/checkoutPaymentFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/checkoutPaymentFragment"
+        android:name="com.example.purepawapp.ui.checkout.CheckoutPaymentFragment"
+        android:label="Payment Method"
+        tools:layout="@layout/fragment_checkout_payment">
+        <action
+            android:id="@+id/action_checkoutPaymentFragment_to_checkoutReviewFragment"
+            app:destination="@id/checkoutReviewFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/checkoutReviewFragment"
+        android:name="com.example.purepawapp.ui.checkout.CheckoutReviewFragment"
+        android:label="Review Order"
+        tools:layout="@layout/fragment_checkout_review">
+        <action
+            android:id="@+id/action_checkoutReviewFragment_to_orderSuccessFragment"
+            app:destination="@id/orderSuccessFragment"
+            app:popUpTo="@id/cartFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/orderSuccessFragment"
+        android:name="com.example.purepawapp.ui.order.OrderSuccessFragment"
+        android:label="Order Placed"
+        tools:layout="@layout/fragment_order_success" />
+
+</navigation>

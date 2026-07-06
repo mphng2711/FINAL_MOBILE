@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Brand palette sourced from the team's FINAL_MOBILE Color.kt reference -->
+    <color name="pp_primary">#C88435</color>
+    <color name="pp_primary_dark">#A66A26</color>
+    <color name="pp_secondary">#5B7FDB</color>
+    <color name="pp_background">#F7F2EA</color>
+    <color name="pp_surface">#FFFFFF</color>
+    <color name="pp_on_primary">#FFFFFF</color>
+    <color name="pp_on_background">#3A2F28</color>
+    <color name="pp_text_primary">#3A2F28</color>
+    <color name="pp_text_secondary">#8A7B6A</color>
+    <color name="pp_outline">#E3D5C3</color>
+    <color name="pp_light_beige">#EFE4D2</color>
+    <color name="pp_error">#D14343</color>
+    <color name="pp_success">#3FA65A</color>
+    <color name="pp_warning">#E8A93B</color>
+    <color name="pp_disabled">#D8CFC5</color>
+
+    <!-- Extra tints used by the blog / spa / profile screen redesigns -->
+    <color name="pp_chip_pink_bg">#FCE4EC</color>
+    <color name="pp_chip_green_bg">#E8F5E9</color>
+    <color name="pp_chip_orange_bg">#FFF3E0</color>
+    <color name="pp_chip_blue_bg">#E3F2FD</color>
+    <color name="pp_chip_purple_bg">#F3E5F5</color>
+    <color name="pp_chip_teal_bg">#E0F2F1</color>
+    <color name="pp_chip_gray_bg">#F5F5F5</color>
+    <color name="pp_chip_amber_bg">#FFF8E1</color>
+    <color name="pp_star_amber">#FFB300</color>
+    <color name="pp_success_dark">#2E7D32</color>
+    <color name="pp_note_text">#8D6E63</color>
+    <color name="pp_divider">#EEEEEE</color>
+
+    <!-- Status colors for order/booking status chips used across order + spa screens -->
+    <color name="pp_status_blue_bg">#E3F2FD</color>
+    <color name="pp_status_blue_text">#1976D2</color>
+    <color name="pp_status_red_bg">#FFEBEE</color>
+    <color name="pp_status_red_text">#D32F2F</color>
+    <color name="pp_timeline_inactive">#D3D3D3</color>
+</resources>

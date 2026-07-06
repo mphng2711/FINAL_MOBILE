@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/admin_nav_graph"
+    app:startDestination="@id/adminDashboardFragment">
+
+    <fragment
+        android:id="@+id/adminDashboardFragment"
+        android:name="com.example.purepawapp.ui.admin.AdminDashboardFragment"
+        android:label="Tổng quan"
+        tools:layout="@layout/fragment_admin_dashboard" />
+
+    <fragment
+        android:id="@+id/adminProductsFragment"
+        android:name="com.example.purepawapp.ui.admin.AdminProductsFragment"
+        android:label="Sản phẩm"
+        tools:layout="@layout/fragment_admin_products">
+        <action
+            android:id="@+id/action_adminProductsFragment_to_adminAddProductFragment"
+            app:destination="@id/adminAddProductFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/adminAddProductFragment"
+        android:name="com.example.purepawapp.ui.admin.AdminAddProductFragment"
+        android:label="Thêm sản phẩm"
+        tools:layout="@layout/fragment_admin_add_product" />
+
+    <fragment
+        android:id="@+id/adminOrdersFragment"
+        android:name="com.example.purepawapp.ui.admin.AdminOrdersFragment"
+        android:label="Đơn hàng"
+        tools:layout="@layout/fragment_admin_orders">
+        <action
+            android:id="@+id/action_adminOrdersFragment_to_adminOrderDetailFragment"
+            app:destination="@id/adminOrderDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/adminOrderDetailFragment"
+        android:name="com.example.purepawapp.ui.admin.AdminOrderDetailFragment"
+        android:label="Chi tiết đơn hàng"
+        tools:layout="@layout/fragment_admin_order_detail">
+        <argument android:name="orderId" app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/adminBookingsFragment"
+        android:name="com.example.purepawapp.ui.admin.AdminBookingsFragment"
+        android:label="Lịch hẹn"
+        tools:layout="@layout/fragment_admin_bookings">
+        <action
+            android:id="@+id/action_adminBookingsFragment_to_adminBookingDetailFragment"
+            app:destination="@id/adminBookingDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/adminBookingDetailFragment"
+        android:name="com.example.purepawapp.ui.admin.AdminBookingDetailFragment"
+        android:label="Chi tiết lịch hẹn"
+        tools:layout="@layout/fragment_admin_booking_detail">
+        <argument android:name="bookingId" app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/adminMoreFragment"
+        android:name="com.example.purepawapp.ui.admin.AdminMoreFragment"
+        android:label="Khác"
+        tools:layout="@layout/fragment_admin_more">
+        <action
+            android:id="@+id/action_adminMoreFragment_to_adminUsersFragment"
+            app:destination="@id/adminUsersFragment" />
+        <action
+            android:id="@+id/action_adminMoreFragment_to_adminPromotionsFragment"
+            app:destination="@id/adminPromotionsFragment" />
+        <action
+            android:id="@+id/action_adminMoreFragment_to_adminBlogsFragment"
+            app:destination="@id/adminBlogsFragment" />
+        <action
+            android:id="@+id/action_adminMoreFragment_to_adminCategoriesFragment"
+            app:destination="@id/adminCategoriesFragment" />
+        <action
+            android:id="@+id/action_adminMoreFragment_to_adminBookingsFragment"
+            app:destination="@id/adminBookingsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/adminCategoriesFragment"
+        android:name="com.example.purepawapp.ui.admin.AdminCategoriesFragment"
+        android:label="Danh mục"
+        tools:layout="@layout/fragment_admin_categories">
+        <action
+            android:id="@+id/action_adminCategoriesFragment_to_adminAddCategoryFragment"
+            app:destination="@id/adminAddCategoryFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/adminAddCategoryFragment"
+        android:name="com.example.purepawapp.ui.admin.AdminAddCategoryFragment"
+        android:label="Thêm danh mục"
+        tools:layout="@layout/fragment_admin_add_category">
+        <argument
+            android:name="categoryId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="categoryName"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="categoryIcon"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/adminUsersFragment"
+        android:name="com.example.purepawapp.ui.admin.AdminUsersFragment"
+        android:label="Người dùng"
+        tools:layout="@layout/fragment_admin_users" />
+
+    <fragment
+        android:id="@+id/adminPromotionsFragment"
+        android:name="com.example.purepawapp.ui.admin.AdminPromotionsFragment"
+        android:label="Khuyến mãi"
+        tools:layout="@layout/fragment_admin_promotions">
+        <action
+            android:id="@+id/action_adminPromotionsFragment_to_adminAddPromotionFragment"
+            app:destination="@id/adminAddPromotionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/adminAddPromotionFragment"
+        android:name="com.example.purepawapp.ui.admin.AdminAddPromotionFragment"
+        android:label="Thêm khuyến mãi"
+        tools:layout="@layout/fragment_admin_add_promotion" />
+
+    <fragment
+        android:id="@+id/adminBlogsFragment"
+        android:name="com.example.purepawapp.ui.admin.AdminBlogsFragment"
+        android:label="Blog"
+        tools:layout="@layout/fragment_admin_blogs">
+        <action
+            android:id="@+id/action_adminBlogsFragment_to_adminAddBlogFragment"
+            app:destination="@id/adminAddBlogFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/adminAddBlogFragment"
+        android:name="com.example.purepawapp.ui.admin.AdminAddBlogFragment"
+        android:label="Thêm bài viết"
+        tools:layout="@layout/fragment_admin_add_blog" />
+
+    <action
+        android:id="@+id/action_global_to_adminAddProductFragment"
+        app:destination="@id/adminAddProductFragment" />
+
+    <action
+        android:id="@+id/action_global_to_adminAddPromotionFragment"
+        app:destination="@id/adminAddPromotionFragment" />
+
+</navigation>
