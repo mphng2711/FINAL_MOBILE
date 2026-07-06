@@ -26,4 +26,10 @@
         app:itemTextColor="@color/bottom_nav_tint"
         app:menu="@menu/bottom_nav_menu" />
 
+    <include
+        android:id="@+id/loading_overlay"
+        layout="@layout/view_loading_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

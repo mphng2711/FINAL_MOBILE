@@ -27,4 +27,7 @@
     <string name="error_generic">Something went wrong. Please try again.</string>
     <string name="error_network">No internet connection.</string>
     <string name="empty_generic">Nothing here yet.</string>
+
+    <string name="loading_message">Đang tải…</string>
+    <string name="loading_hint">Vui lòng kiểm tra kết nối mạng nếu quá trình này mất nhiều thời gian</string>
 </resources>
