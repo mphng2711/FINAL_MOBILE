@@ -11,6 +11,7 @@ public class Booking {
     private String bookingDate = "";
     private String timeSlot = "";
     private double price = 0.0;
+    private String paymentMethod = "";
     private String status = "";
     private String cancelReason = "";
     private int rating = 0;
@@ -49,6 +50,9 @@ public class Booking {
 
     public double getPrice() { return price; }
     public void setPrice(double price) { this.price = price; }
+
+    public String getPaymentMethod() { return paymentMethod; }
+    public void setPaymentMethod(String paymentMethod) { this.paymentMethod = paymentMethod; }
 
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }

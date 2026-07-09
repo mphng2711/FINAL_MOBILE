@@ -62,9 +62,10 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_stat_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5"
+                        android:text="0"
                         android:textColor="@color/pp_primary"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -90,9 +91,10 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_stat_spent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="950k"
+                        android:text="0đ"
                         android:textColor="@color/pp_primary"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -118,9 +120,10 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_stat_rating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="4.8⭐"
+                        android:text="0⭐"
                         android:textColor="@color/pp_primary"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -134,62 +137,25 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Filters -->
-            <com.google.android.material.chip.ChipGroup
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:chipSpacingHorizontal="8dp"
-                app:singleSelection="true">
-
-                <com.google.android.material.chip.Chip
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="Tất cả" />
-
-                <com.google.android.material.chip.Chip
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Spa &amp; Grooming" />
-
-                <com.google.android.material.chip.Chip
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sức khỏe" />
-            </com.google.android.material.chip.ChipGroup>
-
             <!-- History list -->
-            <LinearLayout
-                android:id="@+id/history_list"
+            <TextView
+                android:id="@+id/tv_empty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:text="Bạn chưa có lịch hẹn nào"
+                android:textColor="@color/pp_text_secondary"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_history"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:orientation="vertical">
-
-                <include
-                    android:id="@+id/item_history_1"
-                    layout="@layout/item_appointment_history" />
-
-                <include
-                    android:id="@+id/item_history_2"
-                    layout="@layout/item_appointment_history"
-                    android:layout_marginTop="12dp" />
-
-                <include
-                    android:id="@+id/item_history_3"
-                    layout="@layout/item_appointment_history"
-                    android:layout_marginTop="12dp" />
-
-                <include
-                    android:id="@+id/item_history_4"
-                    layout="@layout/item_appointment_history"
-                    android:layout_marginTop="12dp" />
-
-            </LinearLayout>
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

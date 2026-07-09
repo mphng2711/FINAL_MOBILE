@@ -131,6 +131,13 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
+    public void updateProduct(Product product, RepoCallback<Void> callback) {
+        firestore.collection(FirestoreCollections.PRODUCTS).document(product.getId()).set(product)
+                .addOnSuccessListener(v -> callback.onSuccess(null))
+                .addOnFailureListener(callback::onError);
+    }
+
+    @Override
     public void deleteProduct(String productId, RepoCallback<Void> callback) {
         firestore.collection(FirestoreCollections.PRODUCTS).document(productId).delete()
                 .addOnSuccessListener(v -> callback.onSuccess(null))

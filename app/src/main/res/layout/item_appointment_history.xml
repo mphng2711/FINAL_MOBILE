@@ -119,6 +119,19 @@
                     android:textColor="@color/pp_success_dark"
                     android:textSize="10sp"
                     android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:text="Hủy lịch"
+                    android:textColor="@color/pp_status_red_text"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

@@ -8,6 +8,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.purepawapp.R;
 import com.example.purepawapp.databinding.FragmentSpaDatetimeBinding;
+import com.example.purepawapp.di.ServiceLocator;
 import com.example.purepawapp.ui.common.BaseFragment;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.datepicker.CalendarConstraints;
@@ -75,8 +76,13 @@ public class SpaDateTimeFragment extends BaseFragment<FragmentSpaDatetimeBinding
             });
         }
 
-        getBinding().btnNext.setOnClickListener(v ->
-                NavHostFragment.findNavController(this).navigate(R.id.action_spaDateTimeFragment_to_spaPetInfoFragment));
+        getBinding().btnNext.setOnClickListener(v -> {
+            String isoDate = new SimpleDateFormat("yyyy-MM-dd", Locale.US).format(selectedDate.getTime());
+            String dateLabel = (selectedDateIndex == 0 ? "Hôm nay, " : fullWeekdayLabel(selectedDate) + ", ") + fullDateFormat(selectedDate);
+            String timeSlot = selectedTimeChip.getText().toString();
+            ServiceLocator.getBookingDraft().setDateTime(isoDate, dateLabel, timeSlot);
+            NavHostFragment.findNavController(this).navigate(R.id.action_spaDateTimeFragment_to_spaPetInfoFragment);
+        });
     }
 
     private void openCalendarPicker(List<TextView> dateChips) {

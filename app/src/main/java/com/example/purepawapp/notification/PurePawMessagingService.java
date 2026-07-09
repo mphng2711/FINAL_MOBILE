@@ -14,8 +14,7 @@ public class PurePawMessagingService extends FirebaseMessagingService {
     @Override
     public void onNewToken(@NonNull String token) {
         super.onNewToken(token);
-        // Token is fetched on-demand via FirebaseMessaging.getInstance().getToken() where needed
-        // (e.g. saved to the user's Firestore document after login).
+        FcmTokenManager.registerTokenForCurrentUser();
     }
 
     @Override

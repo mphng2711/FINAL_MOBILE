@@ -8,7 +8,9 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.purepawapp.R;
 import com.example.purepawapp.databinding.FragmentSpaServiceSelectBinding;
+import com.example.purepawapp.di.ServiceLocator;
 import com.example.purepawapp.ui.common.BaseFragment;
+import com.example.purepawapp.util.CurrencyUtils;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.List;
@@ -16,21 +18,25 @@ import java.util.List;
 public class SpaServiceSelectFragment extends BaseFragment<FragmentSpaServiceSelectBinding> {
 
     private static class SpaServiceOption {
+        final String id;
         final String name;
-        final String price;
+        final String type;
+        final double price;
 
-        SpaServiceOption(String name, String price) {
+        SpaServiceOption(String id, String name, String type, double price) {
+            this.id = id;
             this.name = name;
+            this.type = type;
             this.price = price;
         }
     }
 
     private final List<SpaServiceOption> services = List.of(
-            new SpaServiceOption("Tắm gội thú cưng", "120.000đ"),
-            new SpaServiceOption("Cắt tỉa lông", "180.000đ"),
-            new SpaServiceOption("Cắt móng", "60.000đ"),
-            new SpaServiceOption("Massage thư giãn", "150.000đ"),
-            new SpaServiceOption("Combo chăm sóc toàn diện", "350.000đ")
+            new SpaServiceOption("bathing", "Tắm gội thú cưng", "grooming", 120000.0),
+            new SpaServiceOption("trimming", "Cắt tỉa lông", "grooming", 180000.0),
+            new SpaServiceOption("nail-clipping", "Cắt móng", "grooming", 60000.0),
+            new SpaServiceOption("massage", "Massage thư giãn", "wellness", 150000.0),
+            new SpaServiceOption("full-combo", "Combo chăm sóc toàn diện", "grooming", 350000.0)
     );
 
     private int selectedIndex = 0;
@@ -56,8 +62,11 @@ public class SpaServiceSelectFragment extends BaseFragment<FragmentSpaServiceSel
             });
         }
 
-        getBinding().btnNext.setOnClickListener(v ->
-                NavHostFragment.findNavController(this).navigate(R.id.action_spaServiceSelectFragment_to_spaDateTimeFragment));
+        getBinding().btnNext.setOnClickListener(v -> {
+            SpaServiceOption service = services.get(selectedIndex);
+            ServiceLocator.getBookingDraft().setService(service.id, service.name, service.type, service.price);
+            NavHostFragment.findNavController(this).navigate(R.id.action_spaServiceSelectFragment_to_spaDateTimeFragment);
+        });
         getBinding().btnViewAppointments.setOnClickListener(v ->
                 NavHostFragment.findNavController(this).navigate(R.id.action_spaServiceSelectFragment_to_appointmentsFragment));
     }
@@ -74,7 +83,7 @@ public class SpaServiceSelectFragment extends BaseFragment<FragmentSpaServiceSel
 
         SpaServiceOption service = services.get(selectedIndex);
         getBinding().tvSelectedSummary.setText(service.name);
-        getBinding().tvSelectedPrice.setText(service.price);
+        getBinding().tvSelectedPrice.setText(CurrencyUtils.toVndString(service.price));
     }
 
     private int dp(int value) {

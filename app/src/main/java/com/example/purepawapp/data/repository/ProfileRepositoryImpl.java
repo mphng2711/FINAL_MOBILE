@@ -38,6 +38,13 @@ public class ProfileRepositoryImpl implements ProfileRepository {
     }
 
     @Override
+    public void updateFcmToken(String uid, String token, RepoCallback<Void> callback) {
+        firestore.collection(FirestoreCollections.USERS).document(uid).update("fcmToken", token)
+                .addOnSuccessListener(v -> callback.onSuccess(null))
+                .addOnFailureListener(callback::onError);
+    }
+
+    @Override
     public void getAllUsers(RepoCallback<List<User>> callback) {
         firestore.collection(FirestoreCollections.USERS).get()
                 .addOnSuccessListener(snapshot -> {

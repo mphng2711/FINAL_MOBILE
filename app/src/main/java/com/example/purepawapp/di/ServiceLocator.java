@@ -19,6 +19,8 @@ import com.example.purepawapp.data.repository.PromotionRepository;
 import com.example.purepawapp.data.repository.PromotionRepositoryImpl;
 import com.example.purepawapp.data.repository.SpaRepository;
 import com.example.purepawapp.data.repository.SpaRepositoryImpl;
+import com.example.purepawapp.data.session.BookingDraft;
+import com.example.purepawapp.data.session.CheckoutDraft;
 import com.example.purepawapp.data.session.SessionManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -41,6 +43,8 @@ public final class ServiceLocator {
     private static BlogRepository blogRepository;
     private static ProfileRepository profileRepository;
     private static PromotionRepository promotionRepository;
+    private static CheckoutDraft checkoutDraft;
+    private static BookingDraft bookingDraft;
 
     private ServiceLocator() {
     }
@@ -112,5 +116,15 @@ public final class ServiceLocator {
     public static PromotionRepository getPromotionRepository() {
         if (promotionRepository == null) promotionRepository = new PromotionRepositoryImpl(getFirestore());
         return promotionRepository;
+    }
+
+    public static CheckoutDraft getCheckoutDraft() {
+        if (checkoutDraft == null) checkoutDraft = new CheckoutDraft();
+        return checkoutDraft;
+    }
+
+    public static BookingDraft getBookingDraft() {
+        if (bookingDraft == null) bookingDraft = new BookingDraft();
+        return bookingDraft;
     }
 }

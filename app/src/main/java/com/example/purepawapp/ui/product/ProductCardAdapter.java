@@ -58,7 +58,7 @@ public class ProductCardAdapter extends ListAdapter<Product, ProductCardAdapter.
         }
 
         void bind(Product product) {
-            binding.tvIcon.setText(ProductUi.getEmoji(product));
+            ProductUi.loadImage(binding.ivProductImage, product);
             binding.tvBadge.setText(ProductUi.getBadgeLabel(product));
             binding.tvName.setText(product.getName());
             binding.tvPrice.setText(CurrencyUtils.toVndString(product.getDisplayPrice()));

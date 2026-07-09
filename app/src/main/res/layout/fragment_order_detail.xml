@@ -341,4 +341,21 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_cancel_order"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="96dp"
+        android:text="Hủy đơn hàng"
+        android:textColor="@color/pp_status_red_text"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:backgroundTint="@color/pp_status_red_bg"
+        app:cornerRadius="12dp"
+        app:rippleColor="@color/pp_status_red_bg" />
+
 </LinearLayout>

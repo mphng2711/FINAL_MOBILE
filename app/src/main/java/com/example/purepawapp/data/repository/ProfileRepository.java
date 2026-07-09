@@ -9,5 +9,7 @@ public interface ProfileRepository {
 
     void updateUser(User user, RepoCallback<Void> callback);
 
+    void updateFcmToken(String uid, String token, RepoCallback<Void> callback);
+
     void getAllUsers(RepoCallback<List<User>> callback);
 }

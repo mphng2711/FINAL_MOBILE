@@ -5,6 +5,7 @@ import com.example.purepawapp.data.model.SpaService;
 import com.example.purepawapp.util.FirestoreCollections;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.SetOptions;
 
 import java.util.Collections;
@@ -71,6 +72,23 @@ public class SpaRepositoryImpl implements SpaRepository {
                     callback.onSuccess(bookings);
                 })
                 .addOnFailureListener(callback::onError);
+    }
+
+    @Override
+    public ListenerRegistration listenToBookings(String userId, RepoCallback<List<Booking>> callback) {
+        return firestore.collection(FirestoreCollections.BOOKINGS)
+                .whereEqualTo("userId", userId)
+                .addSnapshotListener((snapshot, error) -> {
+                    if (error != null) {
+                        callback.onError(error);
+                        return;
+                    }
+                    if (snapshot != null) {
+                        List<Booking> bookings = snapshot.toObjects(Booking.class);
+                        Collections.sort(bookings, Comparator.comparingLong(Booking::getCreatedAt).reversed());
+                        callback.onSuccess(bookings);
+                    }
+                });
     }
 
     @Override

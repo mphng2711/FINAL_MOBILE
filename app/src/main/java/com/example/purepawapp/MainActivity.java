@@ -1,11 +1,17 @@
 package com.example.purepawapp;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.navigation.NavDestination;
@@ -29,11 +35,16 @@ public class MainActivity extends AppCompatActivity implements LoadingHost {
             R.id.account_nav_graph
     );
 
+    private final ActivityResultLauncher<String> notificationPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), granted -> { });
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+        requestNotificationPermissionIfNeeded();
 
         CoordinatorLayout rootView = findViewById(R.id.root_coordinator);
         ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
@@ -63,6 +74,14 @@ public class MainActivity extends AppCompatActivity implements LoadingHost {
             badge.setVisible(count > 0);
             badge.setNumber(count);
         });
+    }
+
+    private void requestNotificationPermissionIfNeeded() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return;
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED) {
+            notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+        }
     }
 
     @Override

@@ -12,6 +12,7 @@ import com.example.purepawapp.R;
 import com.example.purepawapp.data.session.SessionManager;
 import com.example.purepawapp.databinding.FragmentSplashBinding;
 import com.example.purepawapp.di.ServiceLocator;
+import com.example.purepawapp.notification.FcmTokenManager;
 import com.example.purepawapp.ui.admin.AdminActivity;
 import com.example.purepawapp.ui.common.BaseFragment;
 
@@ -34,6 +35,8 @@ public class SplashFragment extends BaseFragment<FragmentSplashBinding> {
             boolean hasSeenOnboarding = sessionManager.hasSeenOnboardingOnce();
             boolean isLoggedIn = sessionManager.isLoggedInOnce();
             boolean isAdmin = isLoggedIn && sessionManager.isAdminOnce();
+
+            if (isLoggedIn) FcmTokenManager.registerTokenForCurrentUser();
 
             if (isAdmin) {
                 startActivity(new Intent(requireContext(), AdminActivity.class));

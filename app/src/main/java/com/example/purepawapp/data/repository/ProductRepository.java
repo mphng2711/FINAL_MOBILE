@@ -21,6 +21,8 @@ public interface ProductRepository {
 
     void addProduct(Product product, RepoCallback<Void> callback);
 
+    void updateProduct(Product product, RepoCallback<Void> callback);
+
     void deleteProduct(String productId, RepoCallback<Void> callback);
 
     void addCategory(Category category, RepoCallback<Void> callback);

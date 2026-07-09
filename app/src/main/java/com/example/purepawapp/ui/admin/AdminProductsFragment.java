@@ -24,8 +24,13 @@ public class AdminProductsFragment extends BaseFragment<FragmentAdminProductsBin
 
     private List<Product> allProducts = List.of();
 
-    private final AdminProductAdapter adapter = new AdminProductAdapter(product ->
-            new MaterialAlertDialogBuilder(requireContext())
+    private final AdminProductAdapter adapter = new AdminProductAdapter(
+            product -> {
+                Bundle args = new Bundle();
+                args.putString("productId", product.getId());
+                NavHostFragment.findNavController(this).navigate(R.id.action_adminProductsFragment_to_adminAddProductFragment, args);
+            },
+            product -> new MaterialAlertDialogBuilder(requireContext())
                     .setTitle("Xóa sản phẩm")
                     .setMessage("Bạn có chắc muốn xóa \"" + product.getName() + "\"?")
                     .setNegativeButton("Hủy", null)

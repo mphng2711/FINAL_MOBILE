@@ -32,6 +32,7 @@ public class AdminBookingsFragment extends BaseFragment<FragmentAdminBookingsBin
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        getBinding().btnBack.setOnClickListener(v -> NavHostFragment.findNavController(this).popBackStack());
         getBinding().rvBookings.setLayoutManager(new LinearLayoutManager(requireContext()));
         getBinding().rvBookings.setAdapter(adapter);
         getBinding().rvBookings.addItemDecoration(new SpacingItemDecoration((int) (12 * getResources().getDisplayMetrics().density)));

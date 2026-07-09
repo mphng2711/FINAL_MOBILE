@@ -20,22 +20,32 @@ import com.example.purepawapp.databinding.ItemAdminOrderLineBinding;
 import com.example.purepawapp.di.ServiceLocator;
 import com.example.purepawapp.ui.admin.AdminStatusUi;
 import com.example.purepawapp.ui.admin.StatusStyle;
+import com.example.purepawapp.notification.NotificationHelper;
 import com.example.purepawapp.ui.common.BaseFragment;
 import com.example.purepawapp.util.CurrencyUtils;
+import com.example.purepawapp.util.OrderStatus;
 import com.example.purepawapp.util.ViewUtils;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.firebase.firestore.ListenerRegistration;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 public class OrderDetailFragment extends BaseFragment<FragmentOrderDetailBinding> {
+
+    private static final Set<String> CANCELLABLE_STATUSES = Set.of(OrderStatus.PENDING, OrderStatus.CONFIRMED);
 
     private String orderId;
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", new Locale("vi", "VN"));
     private final SimpleDateFormat dateTimeFormat = new SimpleDateFormat("HH:mm, dd/MM/yyyy", new Locale("vi", "VN"));
+
+    private ListenerRegistration orderListener;
+    private boolean firstLoad = true;
+    private String lastKnownStatus;
 
     public OrderDetailFragment() {
         super(FragmentOrderDetailBinding::inflate);
@@ -48,23 +58,29 @@ public class OrderDetailFragment extends BaseFragment<FragmentOrderDetailBinding
 
         getBinding().btnBack.setOnClickListener(v -> NavHostFragment.findNavController(this).popBackStack());
 
-        loadOrder();
+        listenToOrder();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        loadOrder();
-    }
-
-    private void loadOrder() {
+    private void listenToOrder() {
         if (orderId == null || orderId.isBlank()) return;
+        firstLoad = true;
         showLoading();
-        ServiceLocator.getOrderRepository().getOrder(orderId, new RepoCallback<>() {
+        orderListener = ServiceLocator.getOrderRepository().listenToOrder(orderId, new RepoCallback<>() {
             @Override
             public void onSuccess(Order order) {
+                if (lastKnownStatus != null && !lastKnownStatus.equals(order.getStatus()) && getBinding() != null) {
+                    StatusStyle style = AdminStatusUi.orderStatusStyle(order.getStatus());
+                    NotificationHelper.showNotification(requireContext(),
+                            "Đơn hàng " + order.getOrderCode() + " cập nhật",
+                            "Trạng thái mới: " + style.getLabel(),
+                            order.getId().hashCode());
+                }
+                lastKnownStatus = order.getStatus();
                 bind(order);
-                hideLoading();
+                if (firstLoad) {
+                    hideLoading();
+                    firstLoad = false;
+                }
             }
 
             @Override
@@ -73,6 +89,13 @@ public class OrderDetailFragment extends BaseFragment<FragmentOrderDetailBinding
                 hideLoading();
             }
         });
+    }
+
+    @Override
+    public void onDestroyView() {
+        if (orderListener != null) orderListener.remove();
+        orderListener = null;
+        super.onDestroyView();
     }
 
     private void bind(Order order) {
@@ -94,12 +117,17 @@ public class OrderDetailFragment extends BaseFragment<FragmentOrderDetailBinding
         }
 
         var address = order.getShippingAddress();
-        getBinding().tvShippingName.setText(address.getFullName() + " | " + address.getPhone());
-        List<String> addressParts = new ArrayList<>();
-        for (String part : List.of(address.getStreet(), address.getWard(), address.getDistrict(), address.getCity())) {
-            if (part != null && !part.isBlank()) addressParts.add(part);
+        if (address != null) {
+            getBinding().tvShippingName.setText(address.getFullName() + " | " + address.getPhone());
+            List<String> addressParts = new ArrayList<>();
+            for (String part : List.of(address.getStreet(), address.getWard(), address.getDistrict(), address.getCity())) {
+                if (part != null && !part.isBlank()) addressParts.add(part);
+            }
+            getBinding().tvShippingAddress.setText(String.join(", ", addressParts));
+        } else {
+            getBinding().tvShippingName.setText("");
+            getBinding().tvShippingAddress.setText("");
         }
-        getBinding().tvShippingAddress.setText(String.join(", ", addressParts));
 
         String paymentMethod = order.getPaymentMethod() == null ? "" : order.getPaymentMethod();
         String paymentLabel;
@@ -125,6 +153,40 @@ public class OrderDetailFragment extends BaseFragment<FragmentOrderDetailBinding
             getBinding().rowDiscount.setVisibility(View.GONE);
         }
         getBinding().tvTotalAmount.setText(CurrencyUtils.toVndString(order.getTotalAmount()));
+
+        boolean cancellable = CANCELLABLE_STATUSES.contains(order.getStatus());
+        getBinding().btnCancelOrder.setVisibility(cancellable ? View.VISIBLE : View.GONE);
+        getBinding().btnCancelOrder.setOnClickListener(cancellable ? v -> confirmCancel(order) : null);
+    }
+
+    private void confirmCancel(Order order) {
+        new MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Hủy đơn hàng")
+                .setMessage("Bạn có chắc muốn hủy đơn \"" + order.getOrderCode() + "\"?")
+                .setNegativeButton("Không", null)
+                .setPositiveButton("Hủy đơn", (dialog, which) -> cancelOrder(order))
+                .show();
+    }
+
+    private void cancelOrder(Order order) {
+        getBinding().btnCancelOrder.setEnabled(false);
+        showLoading();
+        ServiceLocator.getOrderRepository().updateOrderStatus(order.getId(), OrderStatus.CANCELLED, new RepoCallback<>() {
+            @Override
+            public void onSuccess(Void result) {
+                hideLoading();
+                if (getBinding() != null) getBinding().btnCancelOrder.setEnabled(true);
+                ViewUtils.toast(OrderDetailFragment.this, "Đã hủy đơn hàng");
+            }
+
+            @Override
+            public void onError(Exception error) {
+                hideLoading();
+                if (getBinding() != null) getBinding().btnCancelOrder.setEnabled(true);
+                ViewUtils.toast(OrderDetailFragment.this,
+                        error.getMessage() != null ? error.getMessage() : "Không thể hủy đơn hàng, vui lòng thử lại");
+            }
+        });
     }
 
     private void renderTimeline(Order order) {

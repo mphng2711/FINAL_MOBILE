@@ -12,12 +12,11 @@ import com.example.purepawapp.data.repository.RepoCallback;
 import com.example.purepawapp.databinding.FragmentCartBinding;
 import com.example.purepawapp.di.ServiceLocator;
 import com.example.purepawapp.ui.common.BaseFragment;
+import com.example.purepawapp.util.CheckoutConfig;
 import com.example.purepawapp.util.CurrencyUtils;
 import com.example.purepawapp.util.ViewUtils;
 
 public class CartFragment extends BaseFragment<FragmentCartBinding> {
-
-    private static final double SHIPPING_FEE = 25000.0;
 
     private CartRepository cartRepository;
 
@@ -83,7 +82,7 @@ public class CartFragment extends BaseFragment<FragmentCartBinding> {
 
         double subtotal = cartRepository.subtotal();
         double discount = cartRepository.discount();
-        double shipping = isEmpty ? 0.0 : SHIPPING_FEE;
+        double shipping = isEmpty ? 0.0 : CheckoutConfig.SHIPPING_FEE;
         double total = cartRepository.total() + shipping;
 
         getBinding().tvSubtotal.setText(CurrencyUtils.toVndString(subtotal));

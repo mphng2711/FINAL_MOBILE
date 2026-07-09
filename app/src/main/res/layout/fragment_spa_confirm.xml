@@ -66,7 +66,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Mã đặt lịch: #BK-2026-001"
+                            android:text="Chi tiết đặt lịch"
                             android:textColor="@color/pp_primary"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -88,7 +88,7 @@
                         <TextView style="@style/SuccessDetailIcon" android:text="✂️" />
                         <LinearLayout style="@style/SuccessDetailTextColumn">
                             <TextView style="@style/SuccessDetailLabel" android:text="Dịch vụ" />
-                            <TextView style="@style/SuccessDetailValue" android:text="Tắm gội thú cưng" />
+                            <TextView android:id="@+id/tv_service_value" style="@style/SuccessDetailValue" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -96,15 +96,15 @@
                         <TextView style="@style/SuccessDetailIcon" android:text="📅" />
                         <LinearLayout style="@style/SuccessDetailTextColumn">
                             <TextView style="@style/SuccessDetailLabel" android:text="Ngày hẹn" />
-                            <TextView style="@style/SuccessDetailValue" android:text="Thứ 3, 02/07/2026" />
+                            <TextView android:id="@+id/tv_date_value" style="@style/SuccessDetailValue" />
                         </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout style="@style/SuccessDetailRow">
                         <TextView style="@style/SuccessDetailIcon" android:text="⏰" />
                         <LinearLayout style="@style/SuccessDetailTextColumn">
-                            <TextView style="@style/SuccessDetailLabel" android:text="Giờ &amp; Thời lượng" />
-                            <TextView style="@style/SuccessDetailValue" android:text="10:30 (45 phút)" />
+                            <TextView style="@style/SuccessDetailLabel" android:text="Giờ hẹn" />
+                            <TextView android:id="@+id/tv_time_value" style="@style/SuccessDetailValue" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -112,7 +112,7 @@
                         <TextView style="@style/SuccessDetailIcon" android:text="🐾" />
                         <LinearLayout style="@style/SuccessDetailTextColumn">
                             <TextView style="@style/SuccessDetailLabel" android:text="Thú cưng" />
-                            <TextView style="@style/SuccessDetailValue" android:text="Milo (Chó)" />
+                            <TextView android:id="@+id/tv_pet_value" style="@style/SuccessDetailValue" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -137,9 +137,10 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tv_service_price"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="120.000đ"
+                            android:text="0đ"
                             android:textColor="@color/pp_text_primary"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -150,16 +151,20 @@
 
             <!-- Pet note callout -->
             <TextView
+                android:id="@+id/tv_note_title"
                 style="@style/SectionTitle"
                 android:layout_marginTop="20dp"
-                android:text="Ghi chú thú cưng" />
+                android:text="Ghi chú thú cưng"
+                android:visibility="gone" />
 
             <LinearLayout
+                android:id="@+id/ll_pet_note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_rounded_12_stroke"
                 android:orientation="horizontal"
-                android:padding="16dp">
+                android:padding="16dp"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -169,10 +174,10 @@
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/tv_pet_note"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Thú cưng hơi nhát, cần thao tác nhẹ nhàng."
                     android:textColor="@color/pp_note_text"
                     android:textSize="13sp" />
             </LinearLayout>
@@ -344,9 +349,10 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tv_price_breakdown_service"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="120.000đ"
+                            android:text="0đ"
                             android:textColor="@color/pp_text_primary"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -394,9 +400,10 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tv_total_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="120.000đ"
+                            android:text="0đ"
                             android:textColor="@color/pp_primary"
                             android:textSize="20sp"
                             android:textStyle="bold" />

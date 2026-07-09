@@ -47,8 +47,13 @@
 
             <!-- Saved address summary -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_saved_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
                 app:cardBackgroundColor="@color/pp_light_beige"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="0dp">
@@ -73,26 +78,29 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tv_saved_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Trần Chức An"
+                            android:text=""
                             android:textColor="@color/pp_text_primary"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tv_saved_phone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:text="0909 123 456"
+                            android:text=""
                             android:textColor="@color/pp_text_secondary"
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tv_saved_location"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:text="Q.1, TP. Hồ Chí Minh"
+                            android:text=""
                             android:textColor="@color/pp_text_secondary"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -103,7 +111,7 @@
                 style="@style/SectionTitle"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="4dp"
-                android:text="Hoặc nhập địa chỉ mới" />
+                android:text="Nhập địa chỉ giao hàng" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -119,10 +127,10 @@
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_full_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:text="Trần Chức An" />
+                    android:inputType="textPersonName" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -139,10 +147,10 @@
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="phone"
-                    android:text="0909 123 456" />
+                    android:inputType="phone" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -159,10 +167,10 @@
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_street"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPostalAddress"
-                    android:text="45 Nguyễn Trãi" />
+                    android:inputType="textPostalAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -179,10 +187,10 @@
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_city"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:text="Q.1, TP. Hồ Chí Minh" />
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>

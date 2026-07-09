@@ -7,6 +7,7 @@ public class User {
     private String phone = "";
     private String avatarUrl = "";
     private Address address = new Address();
+    private String fcmToken = "";
     private String role = "user";
     private boolean isActive = true;
     private long createdAt = System.currentTimeMillis();
@@ -31,6 +32,9 @@ public class User {
 
     public Address getAddress() { return address; }
     public void setAddress(Address address) { this.address = address; }
+
+    public String getFcmToken() { return fcmToken; }
+    public void setFcmToken(String fcmToken) { this.fcmToken = fcmToken; }
 
     public String getRole() { return role; }
     public void setRole(String role) { this.role = role; }

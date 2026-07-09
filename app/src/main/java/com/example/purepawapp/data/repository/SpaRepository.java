@@ -2,6 +2,7 @@ package com.example.purepawapp.data.repository;
 
 import com.example.purepawapp.data.model.Booking;
 import com.example.purepawapp.data.model.SpaService;
+import com.google.firebase.firestore.ListenerRegistration;
 
 import java.util.List;
 
@@ -13,6 +14,8 @@ public interface SpaRepository {
     void createBooking(Booking booking, RepoCallback<String> callback);
 
     void getBookings(String userId, RepoCallback<List<Booking>> callback);
+
+    ListenerRegistration listenToBookings(String userId, RepoCallback<List<Booking>> callback);
 
     void submitRating(String bookingId, int rating, String review, RepoCallback<Void> callback);
 

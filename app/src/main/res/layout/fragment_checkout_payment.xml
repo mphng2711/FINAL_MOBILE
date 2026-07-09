@@ -57,6 +57,7 @@
 
                 <!-- COD -->
                 <LinearLayout
+                    android:id="@+id/row_cod"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -100,6 +101,7 @@
 
                 <!-- Bank transfer -->
                 <LinearLayout
+                    android:id="@+id/row_bank_transfer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -142,6 +144,7 @@
 
                 <!-- E-wallet -->
                 <LinearLayout
+                    android:id="@+id/row_ewallet"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/shape_rounded_12_stroke_white"
@@ -216,9 +219,10 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tv_subtotal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="250.000đ"
+                            android:text="0đ"
                             android:textColor="@color/pp_text_primary"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -238,9 +242,10 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tv_shipping"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="20.000đ"
+                            android:text="0đ"
                             android:textColor="@color/pp_text_primary"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -260,9 +265,10 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tv_discount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="-30.000đ"
+                            android:text="-0đ"
                             android:textColor="@color/pp_error"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -289,9 +295,10 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tv_total"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="240.000đ"
+                            android:text="0đ"
                             android:textColor="@color/pp_primary"
                             android:textSize="18sp"
                             android:textStyle="bold" />

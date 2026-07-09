@@ -1,43 +1,44 @@
 package com.example.purepawapp.ui.spa;
 
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.purepawapp.R;
+import com.example.purepawapp.data.model.Booking;
+import com.example.purepawapp.data.repository.RepoCallback;
 import com.example.purepawapp.databinding.FragmentAppointmentsBinding;
-import com.example.purepawapp.databinding.ItemAppointmentHistoryBinding;
+import com.example.purepawapp.di.ServiceLocator;
+import com.example.purepawapp.notification.NotificationHelper;
+import com.example.purepawapp.ui.admin.AdminStatusUi;
+import com.example.purepawapp.ui.admin.StatusStyle;
 import com.example.purepawapp.ui.common.BaseFragment;
+import com.example.purepawapp.util.BookingStatus;
+import com.example.purepawapp.util.CurrencyUtils;
+import com.example.purepawapp.util.ViewUtils;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.firebase.firestore.ListenerRegistration;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AppointmentsFragment extends BaseFragment<FragmentAppointmentsBinding> {
 
-    private static class HistoryEntry {
-        final String bookingId;
-        final String date;
-        final String code;
-        final String service;
-        final String pet;
-        final String price;
-        final String iconEmoji;
-        final int iconBgColor;
-        final int rating;
+    private final AppointmentAdapter adapter = new AppointmentAdapter(
+            booking -> {
+                Bundle args = new Bundle();
+                args.putString("bookingId", booking.getId());
+                NavHostFragment.findNavController(this).navigate(R.id.action_appointmentsFragment_to_appointmentRatingFragment, args);
+            },
+            this::confirmCancel
+    );
 
-        HistoryEntry(String bookingId, String date, String code, String service, String pet, String price, String iconEmoji, int iconBgColor, int rating) {
-            this.bookingId = bookingId;
-            this.date = date;
-            this.code = code;
-            this.service = service;
-            this.pet = pet;
-            this.price = price;
-            this.iconEmoji = iconEmoji;
-            this.iconBgColor = iconBgColor;
-            this.rating = rating;
-        }
-    }
+    private final Map<String, String> lastKnownStatuses = new HashMap<>();
+    private ListenerRegistration bookingsListener;
+    private boolean firstLoad = true;
 
     public AppointmentsFragment() {
         super(FragmentAppointmentsBinding::inflate);
@@ -48,40 +49,106 @@ public class AppointmentsFragment extends BaseFragment<FragmentAppointmentsBindi
         super.onViewCreated(view, savedInstanceState);
 
         getBinding().btnBack.setOnClickListener(v -> NavHostFragment.findNavController(this).popBackStack());
+        getBinding().rvHistory.setLayoutManager(new LinearLayoutManager(requireContext()));
+        getBinding().rvHistory.setAdapter(adapter);
 
-        List<HistoryEntry> entries = List.of(
-                new HistoryEntry("SP230045", "📅 10/06/2026 · 10:00–12:00", "SP230045", "Spa & Grooming",
-                        "Lucky (Poodle) · Q.1", "250.000đ", "✂️", R.color.pp_chip_pink_bg, 5),
-                new HistoryEntry("MK230031", "📅 02/06/2026 · 14:00–15:00", "MK230031", "Khám sức khỏe định kỳ",
-                        "Mochi (Mèo Anh) · Q.3", "150.000đ", "🏥", R.color.pp_chip_green_bg, 4),
-                new HistoryEntry("SP230018", "📅 18/05/2026 · 09:00–10:00", "SP230018", "Tắm & Sấy",
-                        "Lucky (Poodle) · Q.1", "120.000đ", "💧", R.color.pp_chip_orange_bg, 5),
-                new HistoryEntry("MK230009", "📅 05/05/2026 · 11:00–11:30", "MK230009", "Tiêm phòng dại",
-                        "Lucky (Poodle) · Q.BT", "80.000đ", "💉", R.color.pp_chip_blue_bg, 5)
-        );
-
-        List<ItemAppointmentHistoryBinding> rows = List.of(
-                getBinding().itemHistory1, getBinding().itemHistory2, getBinding().itemHistory3, getBinding().itemHistory4
-        );
-
-        for (int i = 0; i < rows.size(); i++) {
-            bind(rows.get(i), entries.get(i));
-        }
+        listenToBookings();
     }
 
-    private void bind(ItemAppointmentHistoryBinding row, HistoryEntry entry) {
-        row.tvDate.setText(entry.date);
-        row.tvCode.setText(entry.code);
-        row.tvService.setText(entry.service);
-        row.tvPet.setText(entry.pet);
-        row.tvPrice.setText(entry.price);
-        row.tvIcon.setText(entry.iconEmoji);
-        row.tvIcon.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(entry.iconBgColor, null)));
-        row.tvStars.setText("⭐".repeat(entry.rating) + "☆".repeat(5 - entry.rating));
-        row.getRoot().setOnClickListener(v -> {
-            Bundle args = new Bundle();
-            args.putString("bookingId", entry.bookingId);
-            NavHostFragment.findNavController(this).navigate(R.id.action_appointmentsFragment_to_appointmentRatingFragment, args);
+    @Override
+    public void onDestroyView() {
+        if (bookingsListener != null) bookingsListener.remove();
+        bookingsListener = null;
+        super.onDestroyView();
+    }
+
+    private void listenToBookings() {
+        String userId = ServiceLocator.getSessionManager().getUserIdOnce();
+        if (userId == null || userId.isBlank()) return;
+
+        showLoading();
+        bookingsListener = ServiceLocator.getSpaRepository().listenToBookings(userId, new RepoCallback<>() {
+            @Override
+            public void onSuccess(List<Booking> bookings) {
+                if (getBinding() == null) return;
+                notifyStatusChanges(bookings);
+                adapter.submitList(bookings);
+                getBinding().tvEmpty.setVisibility(bookings.isEmpty() ? View.VISIBLE : View.GONE);
+                getBinding().rvHistory.setVisibility(bookings.isEmpty() ? View.GONE : View.VISIBLE);
+                renderStats(bookings);
+                if (firstLoad) {
+                    hideLoading();
+                    firstLoad = false;
+                }
+            }
+
+            @Override
+            public void onError(Exception error) {
+                hideLoading();
+                ViewUtils.toast(AppointmentsFragment.this, error.getMessage() != null ? error.getMessage() : "Không thể tải lịch sử đặt lịch");
+            }
         });
+    }
+
+    private void notifyStatusChanges(List<Booking> bookings) {
+        if (!firstLoad) {
+            for (Booking booking : bookings) {
+                String previous = lastKnownStatuses.get(booking.getId());
+                if (previous != null && !previous.equals(booking.getStatus())) {
+                    StatusStyle style = AdminStatusUi.bookingStatusStyle(booking.getStatus());
+                    NotificationHelper.showNotification(requireContext(),
+                            "Lịch hẹn " + booking.getServiceName() + " cập nhật",
+                            "Trạng thái mới: " + style.getLabel(),
+                            booking.getId().hashCode());
+                }
+            }
+        }
+        lastKnownStatuses.clear();
+        for (Booking booking : bookings) lastKnownStatuses.put(booking.getId(), booking.getStatus());
+    }
+
+    private void confirmCancel(Booking booking) {
+        new MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Hủy lịch hẹn")
+                .setMessage("Bạn có chắc muốn hủy lịch \"" + booking.getServiceName() + "\"?")
+                .setNegativeButton("Không", null)
+                .setPositiveButton("Hủy lịch", (dialog, which) -> cancelBooking(booking))
+                .show();
+    }
+
+    private void cancelBooking(Booking booking) {
+        showLoading();
+        ServiceLocator.getSpaRepository().updateBookingStatus(booking.getId(), BookingStatus.CANCELLED, new RepoCallback<>() {
+            @Override
+            public void onSuccess(Void result) {
+                hideLoading();
+                ViewUtils.toast(AppointmentsFragment.this, "Đã hủy lịch hẹn");
+            }
+
+            @Override
+            public void onError(Exception error) {
+                hideLoading();
+                ViewUtils.toast(AppointmentsFragment.this,
+                        error.getMessage() != null ? error.getMessage() : "Không thể hủy lịch, vui lòng thử lại");
+            }
+        });
+    }
+
+    private void renderStats(List<Booking> bookings) {
+        int count = bookings.size();
+        double totalSpent = 0;
+        int ratingSum = 0;
+        int ratedCount = 0;
+        for (Booking booking : bookings) {
+            if (BookingStatus.COMPLETED.equals(booking.getStatus())) totalSpent += booking.getPrice();
+            if (booking.getRating() > 0) {
+                ratingSum += booking.getRating();
+                ratedCount++;
+            }
+        }
+        getBinding().tvStatCount.setText(String.valueOf(count));
+        getBinding().tvStatSpent.setText(CurrencyUtils.toVndString(totalSpent));
+        double avgRating = ratedCount == 0 ? 0.0 : (double) ratingSum / ratedCount;
+        getBinding().tvStatRating.setText(String.format("%.1f⭐", avgRating));
     }
 }

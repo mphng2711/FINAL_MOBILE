@@ -18,6 +18,7 @@ import java.util.function.Consumer;
 
 public class AdminProductAdapter extends ListAdapter<Product, AdminProductAdapter.ViewHolder> {
 
+    private final Consumer<Product> onEdit;
     private final Consumer<Product> onDelete;
 
     private static final DiffUtil.ItemCallback<Product> DIFF_CALLBACK = new DiffUtil.ItemCallback<>() {
@@ -32,8 +33,9 @@ public class AdminProductAdapter extends ListAdapter<Product, AdminProductAdapte
         }
     };
 
-    public AdminProductAdapter(Consumer<Product> onDelete) {
+    public AdminProductAdapter(Consumer<Product> onEdit, Consumer<Product> onDelete) {
         super(DIFF_CALLBACK);
+        this.onEdit = onEdit;
         this.onDelete = onDelete;
     }
 
@@ -58,7 +60,7 @@ public class AdminProductAdapter extends ListAdapter<Product, AdminProductAdapte
         }
 
         void bind(Product product) {
-            binding.tvIcon.setText(ProductUi.getEmoji(product));
+            ProductUi.loadImage(binding.ivProductImage, product);
             binding.tvName.setText(product.getName());
             binding.tvCategory.setText(AdminStatusUi.categoryDisplayName(product.getCategoryId()));
             binding.tvPrice.setText(CurrencyUtils.toVndString(product.getDisplayPrice()));
@@ -72,6 +74,7 @@ public class AdminProductAdapter extends ListAdapter<Product, AdminProductAdapte
             binding.tvStockStatus.setBackgroundTintList(binding.getRoot().getResources().getColorStateList(
                     inStock ? R.color.pp_chip_green_bg : R.color.pp_status_red_bg, null));
 
+            binding.btnEdit.setOnClickListener(v -> onEdit.accept(product));
             binding.btnDelete.setOnClickListener(v -> onDelete.accept(product));
         }
     }

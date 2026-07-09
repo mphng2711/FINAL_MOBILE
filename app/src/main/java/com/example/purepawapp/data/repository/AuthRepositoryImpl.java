@@ -60,6 +60,13 @@ public class AuthRepositoryImpl implements AuthRepository {
     }
 
     @Override
+    public void sendPasswordReset(String email, RepoCallback<Void> callback) {
+        auth.sendPasswordResetEmail(email)
+                .addOnSuccessListener(v -> callback.onSuccess(null))
+                .addOnFailureListener(callback::onError);
+    }
+
+    @Override
     public void logout() {
         auth.signOut();
     }

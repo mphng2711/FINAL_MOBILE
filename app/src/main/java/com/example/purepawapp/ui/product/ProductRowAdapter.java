@@ -56,7 +56,7 @@ public class ProductRowAdapter extends ListAdapter<Product, ProductRowAdapter.Vi
         }
 
         void bind(Product product) {
-            binding.tvIcon.setText(ProductUi.getEmoji(product));
+            ProductUi.loadImage(binding.ivProductImage, product);
             binding.tvName.setText(product.getName());
             binding.tvSubtitle.setText(product.getShortDescription());
             binding.tvRating.setText(String.format("⭐ %.1f", product.getAverageRating()));

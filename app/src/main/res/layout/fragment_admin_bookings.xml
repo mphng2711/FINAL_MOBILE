@@ -7,14 +7,33 @@
     android:background="@color/pp_background"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:text="Quản lý lịch hẹn Spa"
-        android:textColor="@color/pp_text_primary"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="16dp">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/shape_circle"
+            android:backgroundTint="@color/pp_chip_gray_bg"
+            android:contentDescription="@null"
+            android:padding="8dp"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Quản lý lịch hẹn Spa"
+            android:textColor="@color/pp_text_primary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/empty_state"
